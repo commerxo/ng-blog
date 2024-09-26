@@ -1,0 +1,37 @@
+/* img.full-width{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
+}
+
+img.center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
+}
+
+body{
+    background: white;
+    
+}
+.card a{
+    text-decoration: none;
+}
+.card .card-body .card-title{
+    font-weight: bold;
+}
+#viewContent *{
+    text-align: justify;
+    text-justify: inter-word;
+} */
+table{
+    margin-left: auto;
+    margin-right: auto;
+    border:1px solid black;
+}
+
+tr,td{
+    border:1px solid black;
+}

@@ -1,0 +1,95 @@
+
+:root {
+  --ripple-color: #AEA8D3;
+}
+:root {
+  --theme-color-bg: #663399;
+}
+:root {
+  --theme-color: #663399;
+}
+
+
+
+
+
+
+/* Material style */
+.btn-ripple {
+  box-sizing: border-box;
+  border: none;
+  cursor: pointer;
+  color: white;
+  padding: 15px 40px;
+  border-radius: 2px;
+  font-size: 22px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
+  background: var(--theme-color-bg);
+  transition: all .1s;
+  outline: none;
+}
+
+/* Ripple style */
+.btn-ripple{
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background-color: var(--ripple-color);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+   
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+.btn-ripple:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+.btn-ripple:active{
+  transform: scale(0.9) translate(0px, 5px);
+  box-shadow: none;
+}
+/*for not auto response when screen load*/
+.btn-ripple:after {
+  visibility: hidden;
+}
+
+.btn-ripple:focus:after {
+  visibility: visible;
+}
+/*btn outline */
+.bt-outline {
+  background:none;
+  border:2px solid var(--theme-color);
+  color: var(--theme-color);
+}
+.bt-outline.btn-ripple:after {
+  background: var(--theme-color-bg);
+}
+
+
+
+

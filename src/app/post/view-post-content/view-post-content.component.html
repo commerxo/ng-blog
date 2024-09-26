@@ -1,0 +1,26 @@
+
+<div class="card" id="viewContent">
+    
+
+    <div class="card-body">
+
+        <div class="gap-2 d-flex justify-content-start" >
+            <h6 class="card-subtitle text-muted"><strong>Posted On </strong>{{'11/12/1996' | date:'dd-mm-yyyy'}}</h6>
+        </div>
+        
+        <h4 class="card-title mt-2" style="text-transform: uppercase;">Title</h4>
+        
+        <div class="gap-2 d-flex justify-content-start mt-4" >
+            <h6 class="card-subtitle text-muted"><strong>Created By </strong>Shashank Jain</h6>
+        </div>
+        
+        <div class="gap-2 mt-3 d-flex justify-content-between">
+            <a href="#" class="card-link" style="text-decoration: none;">#JAVA</a>
+        </div>
+
+        <div class="border-top">
+            <div class="text-justify mx-auto d-block table table-hover" [innerHtml]="data.content | safeHtml"></div>
+        </div>
+
+    </div>
+</div>
