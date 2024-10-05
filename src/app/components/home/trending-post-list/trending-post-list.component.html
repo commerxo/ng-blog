@@ -1,0 +1,15 @@
+
+<div class="my-5">
+    <div class="container-fluid bg-black">
+        <div class="row center mx-4 my-4 text-white">
+            <h2>Latest Posts</h2>
+            <!-- <p>Highly professional team</p> -->
+        </div>
+        
+        <div class="row mb-5">
+            <div class="col-md-4" *ngFor="let post of postList" >
+                <app-trending-post-list-view [post]="post"></app-trending-post-list-view>
+            </div>
+         </div>
+    </div>                
+</div>

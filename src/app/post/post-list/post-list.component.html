@@ -1,11 +1,31 @@
-<div class="row">
-    <div class="col-md-8">
-        <div>
-            
+<div class="my-3">
+    <div class="container">
+        <div class="p-4">
+            <div class="row">
+                <div class="col-md-8">
+                    <app-post-list-content *ngFor="let post of postList | paginate:config" [data]="post"></app-post-list-content>
+
+                    <div class="gap-2 mt-2 d-flex justify-content-center">
+                        <pagination-controls [id]="config.id"
+                        [maxSize]="maxSize"
+                        [directionLinks]="directionLinks"
+                        [autoHide]="autoHide"
+                        [responsive]="responsive"
+                        [previousLabel]="labels.previousLabel"
+                        [nextLabel]="labels.nextLabel"
+                        [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                        [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                        [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+                        (pageChange)="onPageChange($event)"
+                        (pageBoundsCorrection)="onPageBoundsCorrection($event)"></pagination-controls>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    Hello
+                </div>
+             
+            </div>
         </div>
-    </div>
-
-    <div class="col-md-4">
-
     </div>
 </div>

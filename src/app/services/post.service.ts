@@ -1,10 +1,12 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import { catchError, Observable, throwError } from "rxjs";
 import { APIResponse } from "../models/api-response";
 import { TagList } from "../models/TagList";
 import { environment } from "src/environments/environment.development";
 import { Post } from "../models/post";
+import { Tag } from "../models/tag";
+import { DatabaseHelper } from "../models/database-helper";
 
 
 @Injectable({
@@ -23,7 +25,24 @@ export class PostService{
       .pipe(catchError(this.handleError));
     }
 
+    getPostBySlugTitle(title:string):Observable<APIResponse<Post>>{
+      const params = new HttpParams().set("published",false);
+      
+      return this._httpClient.get<APIResponse<Post>>(environment.blogResourceEndpoint+environment.apiVersion_1+"/post/"+title+"/title",{params})
+      .pipe(catchError(this.handleError));
+    }
 
+
+    getAllPost(databaseHelper:DatabaseHelper):Observable<APIResponse<Post[]>>{
+      const params = new HttpParams()
+      .set("search",databaseHelper.search)
+      .set("sortBy",databaseHelper.sortBy)
+      .set("sortOrder",databaseHelper.sortOrder)
+      .set("currentPage",databaseHelper.currentPage)
+      .set("itemsPerPage",databaseHelper.itemPerPage)
+      return this._httpClient.get<APIResponse<Post[]>>(environment.blogResourceEndpoint+environment.apiVersion_1+"/post/all",{params})
+      .pipe(catchError(this.handleError));
+    }
 
     private handleError(error:any) {
         if (error.status === 0) {

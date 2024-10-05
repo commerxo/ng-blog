@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { IDropdownSettings } from "ng-multiselect-dropdown";
 import { PostService } from '../../services/post.service';
 import { APIResponse } from 'src/app/models/api-response';
-import { TagList } from 'src/app/models/TagList';
 import { TagService } from 'src/app/services/tag.service';
 import { environment } from 'src/environments/environment.development';
 import { Tag } from 'src/app/models/tag';
@@ -29,6 +28,7 @@ export class CreatePostComponent implements OnInit {
   title: FormControl;
   category:FormControl;
   tags:FormControl;
+  summary:FormControl;
   content:FormControl;
 
 
@@ -39,16 +39,12 @@ export class CreatePostComponent implements OnInit {
 
   tinymceInit;
 
-  safeHtml:SafeHtml;
   dropdownSettings:IDropdownSettings = {};
 
-
   constructor(
-    private fb:FormBuilder, 
     private tagService:TagService,
     private postService:PostService,
-    private categoryService:CategoryService,
-    private sanitizer: DomSanitizer
+    private categoryService:CategoryService
   ){}
 
   ngOnInit() {
@@ -56,15 +52,11 @@ export class CreatePostComponent implements OnInit {
     this.tinymceInit = environment.tinymceInit;
     this.dropdownSettings = environment.ngMultiSelectDropdownSetting;
     
-    
     this.getTagList();
     this.getCategoryList();
     this.createPostFormControl();
     this.createForm();
-
   }
-
- 
 
   createPostFormControl(){
 
@@ -77,23 +69,28 @@ export class CreatePostComponent implements OnInit {
       Validators.required,
       Validators.minLength(1)
     ]);
+    this.summary = new FormControl("", [
+      Validators.required,
+      Validators.minLength(150)
+    ])
     this.content = new FormControl("", Validators.required);
   }
 
   createForm(){
+
     this.postForm = new FormGroup({
       title: this.title,
       category:this.category,
       tags:this.tags,
+      summary:this.summary,
       content: this.content
     });
-    debugger 
-    console.log("Post Data" + this.postForm.controls)
+
     this.postData.title = this.postForm.get("title").value;
     this.postData.content = this.postForm.get("content").value;
+    this.postData.summary = this.postForm.get("summary").value;
+    
   }
-
-
 
   getTagList(){
     this.tagService.getAllTags().subscribe((response:APIResponse<Tag[]>) => {

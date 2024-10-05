@@ -1,0 +1,16 @@
+<div class="search-container">
+    <div class="searchInput">
+       <form [formGroup]="searchForm">
+        <input type="text" placeholder="Search..." (click)="showPopup(1, $event)"  formControlName="searchControl" >
+
+       </form> 
+      <div class="resultBox" *ngIf="showList">
+        <!-- here list are inserted from javascript -->
+        <li *ngFor="let d of data">{{d}}</li>
+
+      </div>
+      <div class="icon">
+        <i class="bi bi-search"></i>
+      </div>
+    </div>
+  </div>

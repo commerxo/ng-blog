@@ -4,6 +4,7 @@ import { ViewPostComponent } from './view-post/view-post.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { AuthActivatedGuards } from '../core/guard/auth.guard';
+import { PostListComponent } from './post-list/post-list.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
         path:'',
         component: ViewPostComponent,
     },
+
     {
       path:'create',
       component: CreatePostComponent,
@@ -21,8 +23,12 @@ const routes: Routes = [
       component: EditPostComponent
     },
     {
-      path:'view',
+      path:'title/:title/view',
       component:ViewPostComponent
+    },
+    {
+      path:'list',
+      component:PostListComponent
     }
 ];
   

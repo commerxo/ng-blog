@@ -6,6 +6,7 @@ export class Post extends BaseEntity{
 
     public id:string;
     public title:string;
+    public slugTitle:string;
     public summary:string;
     public content:string;
     public publishedAt:Date;
@@ -13,5 +14,5 @@ export class Post extends BaseEntity{
     public isPublished: string;
     public tags:Tag[];
     public categories: Category[];
-    
+
 }

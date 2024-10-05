@@ -14,6 +14,8 @@ import { ViewPostContentComponent } from './view-post-content/view-post-content.
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { SafeHtmlPipe } from '../shared/safe-html.pipe';
 import { SafeHtmlTablePipe } from '../shared/safe-html-table.pipe';
+import { PostListContentComponent } from './post-list-content/post-list-content.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import { SafeHtmlTablePipe } from '../shared/safe-html-table.pipe';
     SafeHtmlTablePipe,
     PostEditorComponent,
     ViewPostContentComponent,
+    PostListContentComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +38,7 @@ import { SafeHtmlTablePipe } from '../shared/safe-html-table.pipe';
     ReactiveFormsModule,
     PostRoutingModule,
     AngularMultiSelectModule,
+    NgxPaginationModule,
     NgMultiSelectDropDownModule.forRoot()
   ], 
   providers:[

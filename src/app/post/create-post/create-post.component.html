@@ -130,13 +130,59 @@
                             </div>
                       
                         </div>
+
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    
+                                    <div class="form-group">
+
+                                        <label for="post-summary" class="form-label fw-bolder">Summary</label>
+                                    
+                                        <p class="text-grey">Provide context about your post.</p>
+                                        
+                                        <textarea 
+                                            id="post-summary"
+                                            [ngClass]="{
+                                            'is-invalid': summary.invalid && (summary.touched || summary.dirty),
+                                            'is-valid':summary.valid && (summary.dirty || summary.touched)
+                                             }"
+                                            type="text"
+                                            maxlength="250"
+                                            class="form-control " 
+                                            formControlName = "summary"
+                                            ></textarea>
+                                             
+                                            
+
+                                            <div *ngIf="summary.invalid && (summary.dirty || summary.touched)" class="invalid-feedback" >
+                                                
+                                                <div *ngIf="summary.errors?.['required']">
+                                                    Summary is required.
+                                                </div>
+                                                
+                                                <div *ngIf="summary.errors?.['minlength']">
+                                                    Summary must be at least {{ summary.errors?.['minlength'].actualLength }} characters long. we need another 
+                                                    {{summary.errors?.['minlength'].requiredLength - summary.errors?.['minlength'].actualLength }} characters
+                                                </div>
+
+                                            </div>
+                                            
+                                            <div class="valid-feedback">
+                                                Looks Good!
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
                                     <label for="tagValidation" class="form-label fw-bolder card-title">Content</label>
                                     <p class="card-text"> Write content about something</p>
-                                    <editor apiKey="jug949l49wduq4fl7p7qzvwktc5d9nv442tysgqqrc1jh0sb"
+                                    <editor
+                                        apiKey=""
                                         formControlName="content"
                                         [init]="tinymceInit">
                                     </editor>
