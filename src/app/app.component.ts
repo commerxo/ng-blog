@@ -2,6 +2,7 @@ import { AfterViewInit, Component, Inject, Renderer2 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent  implements AfterViewInit {
     private renderer2: Renderer2,
   @Inject(DOCUMENT) private _document:Document,
   private oauthService:OAuthService,
+  private toastrService:ToastrService,
   private ngxLoaderService:NgxUiLoaderService
   ){
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-homepage',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class HomepageComponent {
 
+  constructor(private t:ToastrService){
+    this.init()
+  }
+
+  init(){
+    this.t.success("ss","ss");
+  }
 }

@@ -18,9 +18,9 @@ export class APIResponse<T>{
 
     set message(value:string){this._message = value}
 
-    get statusCode():number{return this._status}
+    get status():number{return this._status}
 
-    set statusCode(value:number) {this._status = value}
+    set status(value:number) {this._status = value}
 
     get data():T {return this._data}
 

@@ -68,7 +68,7 @@
                       <li class="mb-3">
                         <a href="#!" class="link-secondary text-decoration-none">AI Solutions</a>
                       </li>
-                      <li class="mb-3">
+                      <!-- <li class="mb-3">
                         <a href="#!" class="link-secondary text-decoration-none">Digital Marketing</a>
                       </li>
                       <li class="mb-3">
@@ -85,7 +85,7 @@
                       </li>
                       <li class="mb-0">
                         <a href="#!" class="link-secondary text-decoration-none">Logo Design</a>
-                      </li>
+                      </li> -->
                     </ul>
                   </div>
                 </div>
@@ -99,7 +99,7 @@
                       <li class="mb-3">
                         <a href="#!" class="link-secondary text-decoration-none">Contact</a>
                       </li>
-                      <li class="mb-3">
+                      <!-- <li class="mb-3">
                         <a href="#!" class="link-secondary text-decoration-none">Advertise</a>
                       </li>
                       <li class="mb-3">
@@ -107,7 +107,7 @@
                       </li>
                       <li class="mb-3">
                         <a href="#!" class="link-secondary text-decoration-none">Careers</a>
-                      </li>
+                      </li> -->
                       <li class="mb-3">
                         <a href="#!" class="link-secondary text-decoration-none">Terms of Service</a>
                       </li>
@@ -117,11 +117,11 @@
                     </ul>
                   </div>
                 </div>
-                <div class="col-12 col-sm-6">
+                <div class="col-12 col-sm-6" style="margin-bottom: 10px;">
                   <div class="widget">
                     <h4 class="widget-title mb-4">Our Newsletter</h4>
-                    <p class="mb-4">Never miss out on our company's latest news, updates, and exclusive offers! Subscribe to our newsletter today and get the inside scoop delivered straight to your inbox.</p>
-                    <form action="#!">
+                    <p class="mb-4">Never miss out on our latest updates and new posts ! Subscribe to our newsletter today and get the inside scoop delivered straight to your inbox.</p>
+                    <form action="#!" [formGroup]="subscriberForm">
                       <div class="row gy-4">
                         <div class="col-12">
                           <div class="input-group">
@@ -130,12 +130,12 @@
                                 <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
                               </svg>
                             </span>
-                            <input type="email" class="form-control" id="email-newsletter" value="" placeholder="Email Address" aria-label="email-newsletter" aria-describedby="email-newsletter-addon" required>
+                            <input type="email" class="form-control" id="email-newsletter" formControlName="emailId" value="" placeholder="Email Address" aria-label="email-newsletter" aria-describedby="email-newsletter-addon" required>
                           </div>
                         </div>
                         <div class="col-12">
                           <div class="d-grid">
-                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                            <button class="btn btn-primary" type="submit" (click)="subscribe()">Subscribe</button>
                           </div>
                         </div>
                       </div>

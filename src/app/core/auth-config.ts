@@ -24,7 +24,11 @@ export const authConfig: AuthConfig = {
 
     nonceStateSeparator:"semicolon",
 
-    // clearHashAfterLogin: false
+    requireHttps: false,
+
+    tokenEndpoint: environment.oauthIssuerEndpoint + "/oauth2/token",
+
+    clearHashAfterLogin: false
 
 
     

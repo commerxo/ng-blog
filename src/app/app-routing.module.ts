@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AboutComponent } from './about/about.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,15 @@ const routes: Routes = [
     path: 'post',
     loadChildren: () => import("./post/post.module").then(m=>m.PostModule),
   },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'contact',
+    component: ContactUsComponent
+  },
+
 
 
 ];

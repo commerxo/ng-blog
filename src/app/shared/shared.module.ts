@@ -6,6 +6,8 @@ import { FooterComponent } from './footer/footer.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { SearchComponent } from './search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ErrorComponent } from './error/error.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -14,15 +16,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     HeaderComponent,
     FooterComponent,
-    SearchComponent
+    SearchComponent,
+    ErrorComponent
   ],
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule
   ],
   exports:[
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    ErrorComponent
   ]
 })
 export class SharedModule { }

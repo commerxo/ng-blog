@@ -4,7 +4,7 @@ export const environment = {
 
     oauthIssuerEndpoint: "http://localhost:9090" ,
 
-    blogResourceEndpoint: "http://127.0.0.7:8085",
+    blogResourceEndpoint: "http://localhost:5001",
 
     apiVersion_1:"/api/v1",
 
@@ -43,8 +43,8 @@ export const environment = {
       },
 
     tinymceInit:{
-    baseUrl:'/tinymce',
-  suffix: '.min',
+        baseUrl:'/tinymce',
+        suffix: '.min',
         height: 500,
         // apiKey:'jug949l49wduq4fl7p7qzvwktc5d9nv442tysgqqrc1jh0sb',
         // license_key:'jug949l49wduq4fl7p7qzvwktc5d9nv442tysgqqrc1jh0sb',
@@ -58,6 +58,7 @@ export const environment = {
         menubar: 'file edit view insert format tools table help',
         content_css:["dark",
         ],
+        image_upload_handler:'',
         fullscreen_native: true,
         // toolbar_sticky: true,
         paste_data_images: true,

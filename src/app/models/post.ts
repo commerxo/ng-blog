@@ -1,5 +1,6 @@
 import { BaseEntity } from "./base-entity";
 import { Category } from "./category";
+import { SubCategory } from "./sub-category";
 import { Tag } from "./tag";
 
 export class Post extends BaseEntity{
@@ -14,5 +15,6 @@ export class Post extends BaseEntity{
     public isPublished: string;
     public tags:Tag[];
     public categories: Category[];
+    public subCategory:SubCategory;
 
 }

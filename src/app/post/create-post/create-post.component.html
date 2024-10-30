@@ -1,4 +1,3 @@
-
 <div class="my-5">
     <div class="container-fluid">
         <div class="p-4">
@@ -8,85 +7,82 @@
                         <h3>Create New Post</h3>
                     </div>
                     <div class="alert alert-primary d-flex align-items-center my-3" role="alert">
-                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                            <use xlink:href="#info-fill" />
+                        </svg>
                         <div>
                             Please do a final review of your blog and then post.
                         </div>
-                      </div>
-                      <form class="row g-3" [formGroup]="postForm" >
+                    </div>
+                    <form class="row g-3" [formGroup]="postForm">
                         <div class="d-grid gap-2 d-flex justify-content-end">
-                            <button class="btn btn-info" type="button" (click)="update(this.postForm)" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" style="color: white;"><i class="fa fa-eye"></i> Preview</button>
+                            <button class="btn btn-info" type="button" (click)="update(this.postForm)"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"
+                                style="color: white;"><i class="fa fa-eye"></i> Preview</button>
                         </div>
 
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    
+
                                     <div class="form-group">
 
                                         <label for="post-title" class="form-label fw-bolder">Title</label>
-                                    
+
                                         <p class="text-grey">Be specific and imagine your title for readers.</p>
-                                        
-                                        <input 
-                                            id="post-title"
-                                            [ngClass]="{
+
+                                        <input id="post-title" [ngClass]="{
                                             'is-invalid': title.invalid && (title.touched || title.dirty),
                                             'is-valid':title.valid && (title.dirty || title.touched)
-                                             }"
-                                            type="text" 
-                                            class="form-control " 
-                                            placeholder="Enter Title" 
-                                            formControlName = "title"
-                                            >
+                                             }" type="text" class="form-control " placeholder="Enter Title"
+                                            formControlName="title">
 
-                                            <div *ngIf="title.invalid && (title.dirty || title.touched)" class="invalid-feedback" >
-                                                
-                                                <div *ngIf="title.errors?.['required']">
-                                                    Title is required.
-                                                </div>
-                                                
-                                                <div *ngIf="title.errors?.['minlength']">
-                                                    Title must be at least 3 characters long. we need another 
-                                                    {{title.errors?.['minlength'].requiredLength - title.errors?.['minlength'].actualLength }} characters
-                                                </div>
+                                        <div *ngIf="title.invalid && (title.dirty || title.touched)"
+                                            class="invalid-feedback">
 
+                                            <div *ngIf="title.errors?.['required']">
+                                                Title is required.
                                             </div>
-                                            
-                                            <div class="valid-feedback">
-                                                Looks Good!
+
+                                            <div *ngIf="title.errors?.['minlength']">
+                                                Title must be at least 3 characters long. we need another
+                                                {{title.errors?.['minlength'].requiredLength -
+                                                title.errors?.['minlength'].actualLength }} characters
                                             </div>
-                                            
+
+                                        </div>
+
+                                        <div class="valid-feedback">
+                                            Looks Good!
+                                        </div>
+
 
                                     </div>
-                            
+
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="col-md-12 ">
                             <div class="card">
                                 <div class="card-body">
                                     <label for="categorySelector" class="form-label fw-bolder">Select Category</label>
-                                    
+
                                     <p class="text-grey">Select appropriate category what are posting </p>
-                                    
-                                    <select class="form-select" 
-                                            id="categorySelector" 
-                                            formControlName="category"
-                                            [ngClass]="{
+
+                                    <select class="form-select" id="categorySelector" formControlName="category"
+                                        (ngModelChange)="onCategorySelectionChange($event)" [ngClass]="{
                                                 'is-invalid': category.invalid && (category.touched || category.dirty),
                                                 'is-valid':category.valid && (category.dirty || category.touched)
-                                            }"
-                                            >
+                                            }">
                                         <option selected disabled value="">Choose...</option>
-                                        <option *ngFor="let category of categories"
-                                            [value] = "category?.categoryName">
-                                                {{ category.categoryName }}
+                                        <option *ngFor="let category of categories" [value]="category?.categoryName">
+                                            {{ category.categoryName }}
                                         </option>
                                     </select>
 
-                                    <div *ngIf="category.invalid && (category.dirty || category.touched)" class="invalid-feedback">
+                                    <div *ngIf="category.invalid && (category.dirty || category.touched)"
+                                        class="invalid-feedback">
                                         <div *ngIf="category.errors?.['required']">
                                             Category selection is required!.
                                         </div>
@@ -99,25 +95,57 @@
                                 </div>
                             </div>
                         </div>
-                    
+
+                        <div class="col-md-12 ">
+                            <div class="card">
+                                <div class="card-body">
+                                    <label for="subCategorySelector" class="form-label fw-bolder">Select Sub
+                                        Category</label>
+
+                                    <p class="text-grey">Select appropriate sub-category what are posting </p>
+
+                                    <select class="form-select" id="subCategorySelector" formControlName="subCategory"
+                                        (ngModelChange)="onSubCategorySelection($event)" [ngClass]="{
+                                                'is-invalid': subCategory.invalid && (subCategory.touched || subCategory.dirty),
+                                                'is-valid':subCategory.valid && (subCategory.dirty || subCategory.touched)
+                                            }">
+                                        <option selected disabled value="">Choose...</option>
+                                        <option *ngFor="let category of subCategories"
+                                            [value]="category?.subCategoryName">
+                                            {{ category.subCategoryName }}
+                                        </option>
+                                    </select>
+
+                                    <div *ngIf="category.invalid && (category.dirty || category.touched)"
+                                        class="invalid-feedback">
+                                        <div *ngIf="category.errors?.['required']">
+                                            Category selection is required!.
+                                        </div>
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Looks Good {{category.value}}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <label for="tagValidation" class="form-label fw-bolder card-title">Select Tags</label>
-                                    <p class="card-text">Add up to 5 tags to describe what are you posting about. Start typing to see suggestions.</p>
-                                    <ng-multiselect-dropdown #multiselect
-                                     
-                                        formControlName="tags"
-                                        [placeholder]="'select Tag'"
-                                        [settings]="dropdownSettings"
-                                        [data]="dropdownList"
+                                    <label for="tagValidation" class="form-label fw-bolder card-title">Select
+                                        Tags</label>
+                                    <p class="card-text">Add up to 5 tags to describe what are you posting about. Start
+                                        typing to see suggestions.</p>
+                                    <ng-multiselect-dropdown #multiselect formControlName="tags"
+                                        [disabled]="tagSelectionDisable" [placeholder]="'select Tag'"
+                                        [settings]="dropdownSettings" [data]="dropdownList"
                                         (onFilterChange)="onFilterChange($event)"
-                                        (onDropDownClose)="onDropDownClose($event)"
-                                        (onSelect)="onItemSelect($event)" 
-                                        (onDeSelect)="onDeSelect($event)"
-                                        (onSelectAll)="onSelectAll($event)"
+                                        (onDropDownClose)="onDropDownClose($event)" (onSelect)="onItemSelect($event)"
+                                        (onDeSelect)="onDeSelect($event)" (onSelectAll)="onSelectAll($event)"
                                         (onDeSelectAll)="onDeSelectAll($event)">
-                                    
+
                                     </ng-multiselect-dropdown>
 
                                     <div *ngIf="tags.invalid && (tags.dirty || tags.touched)" class="invalid-feedback">
@@ -128,113 +156,111 @@
                                     </div>
                                 </div>
                             </div>
-                      
+
                         </div>
 
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    
+
                                     <div class="form-group">
 
                                         <label for="post-summary" class="form-label fw-bolder">Summary</label>
-                                    
+
                                         <p class="text-grey">Provide context about your post.</p>
-                                        
-                                        <textarea 
-                                            id="post-summary"
-                                            [ngClass]="{
+
+                                        <textarea id="post-summary" [ngClass]="{
                                             'is-invalid': summary.invalid && (summary.touched || summary.dirty),
                                             'is-valid':summary.valid && (summary.dirty || summary.touched)
-                                             }"
-                                            type="text"
-                                            maxlength="250"
-                                            class="form-control " 
-                                            formControlName = "summary"
-                                            ></textarea>
-                                             
-                                            
+                                             }" type="text" maxlength="250" class="form-control "
+                                            formControlName="summary"></textarea>
 
-                                            <div *ngIf="summary.invalid && (summary.dirty || summary.touched)" class="invalid-feedback" >
-                                                
-                                                <div *ngIf="summary.errors?.['required']">
-                                                    Summary is required.
-                                                </div>
-                                                
-                                                <div *ngIf="summary.errors?.['minlength']">
-                                                    Summary must be at least {{ summary.errors?.['minlength'].actualLength }} characters long. we need another 
-                                                    {{summary.errors?.['minlength'].requiredLength - summary.errors?.['minlength'].actualLength }} characters
-                                                </div>
 
+
+                                        <div *ngIf="summary.invalid && (summary.dirty || summary.touched)"
+                                            class="invalid-feedback">
+
+                                            <div *ngIf="summary.errors?.['required']">
+                                                Summary is required.
                                             </div>
-                                            
-                                            <div class="valid-feedback">
-                                                Looks Good!
+
+                                            <div *ngIf="summary.errors?.['minlength']" style="font-size: 12px;">
+                                                Summary must be at least {{ summary.errors?.['minlength'].actualLength
+                                                }} characters long. we need another
+                                                {{summary.errors?.['minlength'].requiredLength -
+                                                summary.errors?.['minlength'].actualLength }} characters
                                             </div>
+
+                                        </div>
+
+                                        <div class="valid-feedback">
+                                            Looks Good!
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
                                     <label for="tagValidation" class="form-label fw-bolder card-title">Content</label>
                                     <p class="card-text"> Write content about something</p>
-                                    <editor
-                                        apiKey=""
-                                        formControlName="content"
-                                        [init]="tinymceInit">
+                                    <editor apiKey="" formControlName="content" [init]="tinymceInit">
                                     </editor>
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                         <label class="form-check-label" for="flexCheckDefault">
-                                            An “agree to terms and conditions” checkbox is a method of protecting your business by requiring that users acknowledge the rules they must abide by when using your services.
+                                            An “agree to terms and conditions” checkbox is a method of protecting your
+                                            business by requiring that users acknowledge the rules they must abide by
+                                            when using your services.
                                         </label>
                                     </div>
-                    
+
                                     <div class="ms-auto d-flex justify-content-end p-2">
-                                        <button type="button" class="btn btn-square btn-primary me-2 " [disabled]="postForm.invalid">Save</button>
-                                        <button type="button" class="btn btn-square btn-success" [disabled]="postForm.invalid" (click)="publishNewPost()">Post Now</button>
+                                        <button type="button" class="btn btn-square btn-primary me-2 "
+                                            [disabled]="postForm.invalid">Save</button>
+                                        <button type="button" class="btn btn-square btn-success"
+                                            [disabled]="postForm.invalid" (click)="publishNewPost()">Post Now</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="ms-auto d-flex justify-content-start p-2">
-                            <button type="button" class="btn btn-outline-danger me-2 " >Discard Post</button>
+                            <button type="button" class="btn btn-outline-danger me-2 ">Discard Post</button>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    
+
     <pre>{{postForm.value | json}}</pre>
 </div>
 
-<div class="modal  " id="exampleModal"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal  " id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Preview Post</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Preview Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <app-view-post-content [data]="this.postData"></app-view-post-content>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
         </div>
-        <div class="modal-body">
-            <app-view-post-content [data]="this.postData"></app-view-post-content>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
     </div>
 </div>

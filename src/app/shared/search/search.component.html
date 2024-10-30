@@ -6,7 +6,18 @@
        </form> 
       <div class="resultBox" *ngIf="showList">
         <!-- here list are inserted from javascript -->
-        <li *ngFor="let d of data">{{d}}</li>
+        <li *ngFor="let p of post" routerLink="/post/title/{{p.slugTitle}}/view" style="width:100%">
+          <p class="card-title mt-1" style="text-transform: uppercase;">{{p.title}}</p>
+        
+          <div class="gap-2 d-flex justify-content-start mt-2" >
+              <p class="card-subtitle text-muted " style="word-wrap: break-word;overflow: hidden;" *ngIf="p.summary!=null">{{p?.summary.substring(1,50)+"...."}}</p>
+          </div>
+          
+          <div class="mt-2 d-flex justify-content-start">
+              <a class="card-link text-strong" style="text-decoration: none; text-transform: uppercase;" *ngFor="let tag of p.tags">#{{tag.tagName}}</a>
+          </div>
+  
+        </li>
 
       </div>
       <div class="icon">

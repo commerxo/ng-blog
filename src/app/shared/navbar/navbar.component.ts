@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/app/core/auth.service';
+import { SubscriberService } from 'src/app/services/subscriber.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,15 +11,17 @@ import { AuthService } from 'src/app/core/auth.service';
 })
 export class NavbarComponent implements OnInit{
 
-  constructor(private authService:AuthService, private localStorage:CookieService){
-  }
+  constructor(private authService:AuthService, private localStorage:CookieService,private subscriberService:SubscriberService){}
+
+  
 
   ngOnInit(): void {
     // if(this.oauthService.hasValidAccessToken()){
     //   this.localStorage.set("access_token", this.oauthService.getAccessToken());
     // }
-    
   }
+
+
 
   public login($event: any){
     $event.preventDefault();

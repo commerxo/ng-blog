@@ -6,6 +6,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { CarouselViewComponent } from './carousel-view/carousel-view.component';
 import { TrendingPostListComponent } from './trending-post-list/trending-post-list.component';
 import { TrendingPostListViewComponent } from './trending-post-list-view/trending-post-list-view.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -19,7 +20,8 @@ import { TrendingPostListViewComponent } from './trending-post-list-view/trendin
   ],
   imports: [
     CommonModule, 
-    HomeRoutingModule
+    HomeRoutingModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

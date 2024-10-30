@@ -1,15 +1,21 @@
 
-<div class="my-5">
-    <div class="container-fluid bg-black">
-        <div class="row center mx-4 my-4 text-white">
-            <h2>Latest Posts</h2>
-            <!-- <p>Highly professional team</p> -->
-        </div>
-        
-        <div class="row mb-5">
-            <div class="col-md-4" *ngFor="let post of postList" >
+<div class="my-5 ">
+    <div class="bg-black mb-2 p-3 ">
+
+        <div class="row mb-2">
+            <div class="center mx-4 my-4 text-white">
+                <h2>Latest Posts</h2>
+                <!-- <p>Highly professional team</p> -->
+            </div>
+            <app-error *ngIf="this.postList == null"></app-error>
+            <div class="col-md-4" *ngFor="let post of postList">
                 <app-trending-post-list-view [post]="post"></app-trending-post-list-view>
             </div>
+            <div class="d-flex justify-content-center" *ngIf="this.postList != null">
+                <button type="button" class="btn btn-outline-primary">Show More</button>
+             </div>
          </div>
+
+         
     </div>                
 </div>

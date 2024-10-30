@@ -44,7 +44,19 @@ export class PostService{
       .pipe(catchError(this.handleError));
     }
 
+    searchPost(databaseHelper:DatabaseHelper):Observable<APIResponse<Post[]>>{
+      const params = new HttpParams()
+      .set("q",databaseHelper.search)
+      .set("sortBy",databaseHelper.sortBy)
+      .set("sortOrder",databaseHelper.sortOrder)
+      .set("currentPage",databaseHelper.currentPage)
+      .set("itemsPerPage",databaseHelper.itemPerPage)
+      return this._httpClient.get<APIResponse<Post[]>>(environment.blogResourceEndpoint + environment.apiVersion_1+"/post/search",{params})
+      .pipe(catchError(this.handleError))
+    }
+
     private handleError(error:any) {
+        debugger
         if (error.status === 0) {
           // A client-side or network error occurred. Handle it accordingly.
           console.error('An error occurred:', error.error);
@@ -62,7 +74,7 @@ export class PostService{
        const authError = error.error.message;
        debugger
        console.log(error)
-        return throwError(authError);
+        return throwError(error.error);
       }
       
 }

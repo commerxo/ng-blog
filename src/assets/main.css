@@ -9,7 +9,9 @@
   --theme-color: #663399;
 }
 
-
+body{
+  overflow-x: hidden;
+}
 /* Material style */
 .btn-ripple {
   box-sizing: border-box;
@@ -129,6 +131,7 @@ Search Bar Css
   pointer-events: none;
   max-height: 280px;
   overflow-y: auto;
+  word-wrap: break-word;
   position: absolute;
   background: #fff;
   z-index: 1;

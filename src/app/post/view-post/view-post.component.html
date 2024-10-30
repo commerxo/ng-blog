@@ -4,7 +4,8 @@
             <div class="row">
     
                 <div class="col-md-9 mt-2">
-                    <app-view-post-content [data]="this.postData"></app-view-post-content>
+                    <app-view-post-content [data]="this.postData" *ngIf="this.postData != null"></app-view-post-content>
+                    <app-error *ngIf="this.postData == null" [error]="apiError"></app-error>
                 </div>
             
                 <div class="col-md-3 mt-2">
