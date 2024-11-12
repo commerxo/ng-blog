@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from '../services/contact.service';
+import { ToastrService } from 'ngx-toastr';
+import { APIError } from '../models/api-error';
 
 @Component({
   selector: 'app-contact-us',
@@ -15,7 +17,7 @@ export class ContactUsComponent implements OnInit {
   subject: FormControl;
   message: FormControl;
 
-  constructor(private contactService:ContactService){}
+  constructor(private contactService:ContactService, private toastrService:ToastrService){}
 
   ngOnInit(): void {
     this.createFormControl();
@@ -49,9 +51,10 @@ export class ContactUsComponent implements OnInit {
 
   registerAndSaveQuery(){
     this.contactService.raiseQuery(this.contactForm.value).subscribe((response)=>{
-      
-    },(error)=>{
-
+      this.contactForm.reset();
+      this.toastrService.success(response.message);
+    },(error:APIError)=>{
+      this.toastrService.error(error.message,error.status +" "+error.error)
     })
   }
 }

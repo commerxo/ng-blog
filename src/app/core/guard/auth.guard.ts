@@ -16,7 +16,7 @@ export class AuthGuard{
         // add logic
         // debugger
         console.log("working...." + this.authStorage);
-        return true;
+        return this.checkAuth();
 
     }
 
@@ -27,6 +27,7 @@ export class AuthGuard{
 
 
     private checkAuth():boolean{
+        
         debugger
         if(this.oauthService.hasValidToken()){ // check if token not expired
             return true;

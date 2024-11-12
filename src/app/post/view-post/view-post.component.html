@@ -2,30 +2,30 @@
     <div class="container-fluid">
         <div class="p-4">
             <div class="row">
-    
+
                 <div class="col-md-9 mt-2">
                     <app-view-post-content [data]="this.postData" *ngIf="this.postData != null"></app-view-post-content>
                     <app-error *ngIf="this.postData == null" [error]="apiError"></app-error>
                 </div>
-            
+
                 <div class="col-md-3 mt-2">
 
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Tags</h4>
 
-                            
+
                         </div>
                     </div>
 
                     <div class="card mt-3">
                         <div class="card-body">
                             <h4 class="card-title">Tags</h4>
-                            
+
                         </div>
                     </div>
                 </div>
-            
+
             </div>
         </div>
     </div>

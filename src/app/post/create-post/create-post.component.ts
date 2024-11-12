@@ -13,7 +13,6 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SubCategory } from 'src/app/models/sub-category';
 import { SubCategoryService } from 'src/app/services/sub-category.service';
 import { TagParam } from 'src/app/models/tag-param';
-import { EditorOptions, RawEditorOptions } from 'dist/ng-commerxo-blog/tinymce';
 import { AWSService } from 'src/app/services/aws.service';
 
 

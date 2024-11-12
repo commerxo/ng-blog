@@ -20,7 +20,8 @@ const routes: Routes = [
     },
     {
       path: 'edit',
-      component: EditPostComponent
+      component: EditPostComponent,
+      canActivate: [AuthActivatedGuards]
     },
     {
       path:'title/:title/view',

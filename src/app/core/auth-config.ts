@@ -12,7 +12,7 @@ export const authConfig: AuthConfig = {
 
     responseType: "code",
 
-    scope: 'openid profile',
+    scope: 'openid profile email',
 
     showDebugInformation: true,
 
@@ -28,8 +28,6 @@ export const authConfig: AuthConfig = {
 
     tokenEndpoint: environment.oauthIssuerEndpoint + "/oauth2/token",
 
-    clearHashAfterLogin: false
-
-
-    
+    clearHashAfterLogin: false,
+   
 }
