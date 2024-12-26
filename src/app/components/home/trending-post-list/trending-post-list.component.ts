@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DatabaseHelper } from 'src/app/models/database-helper';
 import { Post } from 'src/app/models/post';
 import { PostService } from 'src/app/services/post.service';
@@ -14,7 +15,7 @@ export class TrendingPostListComponent implements OnInit {
 
 
   private databaseHelper:DatabaseHelper = new DatabaseHelper();
-  constructor(private postService:PostService){
+  constructor(private postService:PostService, private route:Router){
     this.databaseHelper.currentPage = 1;
     this.databaseHelper.itemPerPage = 6;
     this.databaseHelper.search = '';
@@ -26,6 +27,10 @@ export class TrendingPostListComponent implements OnInit {
       this.getLatestPosts()
   }
 
+
+  redirectToPostList(){
+    this.route.navigateByUrl("/post/list")
+  }
 
   getLatestPosts(){
     this.postService.getAllPost(this.databaseHelper).subscribe((response)=>{

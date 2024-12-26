@@ -1,14 +1,14 @@
 <a routerLink="/post/title/{{post.slugTitle}}/view" style="text-decoration: none;">
     <div class="card mb-4" style="height: 500px;">
-        <img src="https://img.freepik.com/free-vector/work-time-concept-illustration_114360-1474.jpg?w=740&t=st=1667038053~exp=1667038653~hmac=7f51a4d7c9f7dc9e0e3a6d53d45f381fc455e5424bcc36a0bedca65db24487e7"
-            class="card-img-top" style="height:300px" alt="...">
-        <div class="card-body">
-            <h5 class="card-title text-dark">{{post.title}}</h5>
+        <img src="{{post.postImageURL}}"
+            class="card-img-top " style="height:250px" alt="...">
+        <div class="card-body py-3 my-3" style="overflow-y: hidden;">
+            <h5 class="card-title text-dark" >{{post.title}}</h5>
             <div class="mt-3 d-flex justify-content-start">
-                <p class="card-text text-strong" style="text-transform: uppercase;" *ngFor="let tag of post.tags">
+                <p class="card-text text-strong text-danger" style="text-transform: lowercase;" *ngFor="let tag of post.tags">
                     #{{tag.tagName}}</p>
             </div>
-            <p class="card-text text-muted">{{post.summary}}</p>
+            <p class="card-text text-muted text-justify">{{post.summary + "..."}}</p>
         </div>
     </div>
 </a>

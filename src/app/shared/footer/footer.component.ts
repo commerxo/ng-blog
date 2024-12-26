@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { APIResponse } from 'src/app/models/api-response';
 import { Subscriber } from 'src/app/models/subscriber';
 import { SubscriberService } from 'src/app/services/subscriber.service';
@@ -15,7 +16,7 @@ export class FooterComponent implements OnInit{
   emailId:FormControl;
   email:string;
 
-  constructor(private subscriberService:SubscriberService){}
+  constructor(private subscriberService:SubscriberService, private toastr:ToastrService){}
 
   ngOnInit(): void {
     this.createFormControl()    
@@ -34,8 +35,9 @@ export class FooterComponent implements OnInit{
 
   subscribe(){
     
-    this.subscriberService.subscribe(this.email).subscribe((response:APIResponse<Subscriber>)=>{
+    this.subscriberService.subscribe(this.subscriberForm.get("emailId").value).subscribe((response:APIResponse<Subscriber>)=>{
       if(response.status==201){
+        this.toastr.success("Successfully Subscribed");
         this.subscriberForm.reset();
       }
     },(error)=>{

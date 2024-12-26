@@ -1,4 +1,4 @@
-<div class="my-5">
+<div class="my-2">
     <div class="container-fluid">
         <div class="p-4">
             <div class="row">
@@ -66,7 +66,10 @@
                         <div class="col-md-12 ">
                             <div class="card">
                                 <div class="card-body">
-                                    <label for="categorySelector" class="form-label fw-bolder">Select Category</label>
+                                    <div class="d-flex justify-content-between">
+                                        <label for="categorySelector" class="form-label fw-bolder">Select Category</label>
+                                        <a href="#">+Add</a>
+                                    </div>
 
                                     <p class="text-grey">Select appropriate category what are posting </p>
 
@@ -75,7 +78,7 @@
                                                 'is-invalid': category.invalid && (category.touched || category.dirty),
                                                 'is-valid':category.valid && (category.dirty || category.touched)
                                             }">
-                                        <option selected disabled value="">Choose...</option>
+                                        <option selected  value="">Choose...</option>
                                         <option *ngFor="let category of categories" [value]="category?.categoryName">
                                             {{ category.categoryName }}
                                         </option>
@@ -99,8 +102,12 @@
                         <div class="col-md-12 ">
                             <div class="card">
                                 <div class="card-body">
-                                    <label for="subCategorySelector" class="form-label fw-bolder">Select Sub
-                                        Category</label>
+                                    <div class="d-flex justify-content-between">
+                                        <label for="subCategorySelector" class="form-label fw-bolder">Select Sub
+                                            Category</label>
+                                        <a href="#">+Add</a>
+                                    </div>
+                                
 
                                     <p class="text-grey">Select appropriate sub-category what are posting </p>
 
@@ -109,7 +116,7 @@
                                                 'is-invalid': subCategory.invalid && (subCategory.touched || subCategory.dirty),
                                                 'is-valid':subCategory.valid && (subCategory.dirty || subCategory.touched)
                                             }">
-                                        <option selected disabled value="">Choose...</option>
+                                        <option selected  value="">Choose...</option>
                                         <option *ngFor="let category of subCategories"
                                             [value]="category?.subCategoryName">
                                             {{ category.subCategoryName }}
@@ -159,6 +166,18 @@
 
                         </div>
 
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <label for="formFile" class="form-label fw-bolder card-title">Select Image</label>
+
+                                    <p class="text-grey">Select appropriate image for your post </p>
+
+                                    <input class="form-control" formControlName="postImageURL" (change)="uploadImage($event)" type="file" id="formFile">
+                                </div>
+                            </div>
+
+                        </div>
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">

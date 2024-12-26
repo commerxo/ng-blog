@@ -29,5 +29,6 @@ export const authConfig: AuthConfig = {
     tokenEndpoint: environment.oauthIssuerEndpoint + "/oauth2/token",
 
     clearHashAfterLogin: false,
-   
+
+
 }

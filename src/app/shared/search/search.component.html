@@ -10,7 +10,7 @@
           <p class="card-title mt-1" style="text-transform: uppercase;">{{p.title}}</p>
         
           <div class="gap-2 d-flex justify-content-start mt-2" >
-              <p class="card-subtitle text-muted " style="word-wrap: break-word;overflow: hidden;" *ngIf="p.summary!=null">{{p?.summary.substring(1,50)+"...."}}</p>
+              <p class="card-subtitle text-muted " style="word-wrap: break-word;overflow: hidden;" *ngIf="p.summary!=null">{{p?.summary.substring(0,50)+"...."}}</p>
           </div>
           
           <div class="mt-2 d-flex justify-content-start">

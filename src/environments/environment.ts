@@ -2,9 +2,11 @@ export const environment = {
 
     production: true,
 
-    oauthIssuerEndpoint: "http://auth-server-env.eba-5eajkmd4.ap-south-1.elasticbeanstalk.com" ,
+    oauthIssuerEndpoint: "https://idpserver.ap-south-1.elasticbeanstalk.com",
 
     blogResourceEndpoint: "http://blog-service-env.eba-rfv5ypmm.ap-south-1.elasticbeanstalk.com",
+
+    oidcProd:true,
 
     apiVersion_1:"/api/v1",
 

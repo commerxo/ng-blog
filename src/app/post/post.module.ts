@@ -16,6 +16,8 @@ import { SafeHtmlPipe } from '../shared/safe-html.pipe';
 import { SafeHtmlTablePipe } from '../shared/safe-html-table.pipe';
 import { PostListContentComponent } from './post-list-content/post-list-content.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AdsenseModule } from 'ng2-adsense';
+import { TagModule } from '../components/tag/tag.module';
 
 
 @NgModule({
@@ -29,18 +31,23 @@ import { NgxPaginationModule } from 'ngx-pagination';
     PostEditorComponent,
     ViewPostContentComponent,
     PostListContentComponent,
+
   ],
   imports: [
     CommonModule,
     SharedModule,
     EditorModule,
     FormsModule,
+    AdsenseModule.forRoot(),
     ReactiveFormsModule,
     PostRoutingModule,
     AngularMultiSelectModule,
     NgxPaginationModule,
     NgMultiSelectDropDownModule.forRoot()
   ], 
+  exports:[
+    PostListContentComponent
+  ],
   providers:[
     {provide: TINYMCE_SCRIPT_SRC, useValue: "tinymce/tinymce.min.js"}
   ]

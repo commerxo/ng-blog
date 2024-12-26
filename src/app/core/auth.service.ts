@@ -1,8 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router, RouterState, RouterStateSnapshot } from '@angular/router';
-import { OAuthErrorEvent, OAuthService } from 'angular-oauth2-oidc';
+import { OAuthErrorEvent, OAuthService, OAuthSuccessEvent } from 'angular-oauth2-oidc';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { OAuthSer } from './custom-auth-service';
 
 
 
@@ -37,8 +39,9 @@ export class AuthService{
     }
   
     constructor(
-      private oauthService: OAuthService,
-      private router: Router
+      private oauthService: OAuthSer,
+      private router: Router,
+      private http:HttpClient
     ) {
       // Useful for debugging:
       this.oauthService.events.subscribe(event => {
@@ -176,6 +179,8 @@ export class AuthService{
     public initiateLoginPKCECodeFlow(){
       this.oauthService.initCodeFlow();
     }
+
+
 
     public logout() { this.oauthService.logOut(); }
     public refresh() { this.oauthService.silentRefresh(); }

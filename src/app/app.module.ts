@@ -21,13 +21,16 @@ import {
   SPINNER,
 } from 'ngx-ui-loader';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DefaultOAuthInterceptor } from './core/token-interceptor.service';
+import {  OAuthInterceptor } from './core/token-interceptor.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TagListComponent } from './components/tag-list/tag-list.component';
 import { SafeHtmlPipe } from './shared/safe-html.pipe';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { AboutComponent } from './about/about.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AdsenseModule } from 'ng2-adsense';
+import { TagModule } from './components/tag/tag.module';
+import { PostModule } from './post/post.module';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: 'red',
@@ -43,6 +46,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   declarations: [AppComponent, TagListComponent, AboutComponent, ContactUsComponent],
   imports: [
     BrowserModule,
+    TagModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -91,11 +95,12 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       progressBar: true,
     }),
     SharedModule,
+    PostModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: DefaultOAuthInterceptor,
+      useClass: OAuthInterceptor,
       multi: true,
     },
     NgxUiLoaderService

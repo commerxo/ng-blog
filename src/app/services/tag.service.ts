@@ -21,6 +21,10 @@ export class TagService{
         .pipe(catchError(this.handleError))
     }
 
+    searchTag():Observable<APIResponse<Tag>>{
+      return this._httpClient.get<APIResponse<Tag>>(environment.blogResourceEndpoint+environment.apiVersion_1+"/search")
+      .pipe(catchError(this.handleError))
+    }
 
     getTagsByCategoryName(categoryName:string):Observable<APIResponse<Tag[]>>{
       return this._httpClient.get<APIResponse<Tag[]>>(environment.blogResourceEndpoint+"/sub/category/"+categoryName+"/category")

@@ -11,7 +11,7 @@
                 <app-trending-post-list-view [post]="post"></app-trending-post-list-view>
             </div>
             <div class="d-flex justify-content-center" *ngIf="this.postList != null">
-                <button type="button" class="btn btn-outline-primary">Show More</button>
+                <button type="button" class="btn btn-outline-primary" (click)="redirectToPostList()">Show More</button>
             </div>
         </div>
 

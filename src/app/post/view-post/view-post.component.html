@@ -13,14 +13,23 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Tags</h4>
-
-
+                            <a routerLink="/tag/view/{{tag.tagName}}"
+                             *ngFor="let tag of postData.tags" 
+                             style="text-decoration: none; font-style: italic;text-transform: lowercase;" 
+                             class="text-danger"> #{{tag.tagName}}
+                            </a>
                         </div>
                     </div>
 
                     <div class="card mt-3">
                         <div class="card-body">
-                            <h4 class="card-title">Tags</h4>
+                            <!-- <h4 class="card-title">
+
+                            </h4> -->
+                            <ng-adsense
+                            [adClient]="'ca-pub-8798159583506964'"
+                            [display]="'inline-block'"
+                          ></ng-adsense>
 
                         </div>
                     </div>

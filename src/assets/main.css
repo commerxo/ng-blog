@@ -172,3 +172,9 @@ Search Bar Css
   color: #644bff;
   cursor: pointer;
 }
+
+.text-justify{
+  -ms-text-justify:inter-word;
+  text-justify:inter-word;
+  text-align: justify;
+}

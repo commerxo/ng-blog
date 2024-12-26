@@ -9,10 +9,6 @@ import { ToastrService } from 'ngx-toastr';
 export class HomepageComponent {
 
   constructor(private t:ToastrService){
-    this.init()
   }
-
-  init(){
-    this.t.success("ss","ss");
-  }
+  
 }

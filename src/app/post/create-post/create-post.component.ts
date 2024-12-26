@@ -14,6 +14,8 @@ import { SubCategory } from 'src/app/models/sub-category';
 import { SubCategoryService } from 'src/app/services/sub-category.service';
 import { TagParam } from 'src/app/models/tag-param';
 import { AWSService } from 'src/app/services/aws.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -33,6 +35,7 @@ export class CreatePostComponent implements OnInit, OnChanges {
   category:FormControl;
   subCategory:FormControl;
   tags:FormControl;
+  postImageURL:FormControl;
   summary:FormControl;
   content:FormControl;
 
@@ -45,7 +48,7 @@ export class CreatePostComponent implements OnInit, OnChanges {
   selectedSubCategory:string;
   postData:Post = new Post();
   tagSelectionDisable:boolean = true;
-
+  postImgURL:any;
   // tinymceInit:any;
 
   tinymceInit:any = {
@@ -102,6 +105,8 @@ export class CreatePostComponent implements OnInit, OnChanges {
     private categoryService:CategoryService,
     private subCategoryService:SubCategoryService,
     private awsService: AWSService,
+    private router:Router,
+    private toastrService:ToastrService,
     private changeDetect:ChangeDetectorRef
   ){
     this.tagParam.currentPage = 0;
@@ -114,7 +119,9 @@ export class CreatePostComponent implements OnInit, OnChanges {
     this.tagParam.tagName = ""
   }
 
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnChanges(changes: SimpleChanges): void {
+    this.createForm();
+  }
 
   
   ngOnInit() {    
@@ -173,6 +180,7 @@ export class CreatePostComponent implements OnInit, OnChanges {
       Validators.required,
       Validators.minLength(1)
     ]);
+    this.postImageURL = new FormControl("",Validators.required)
     this.summary = new FormControl("", [
       Validators.required,
       Validators.minLength(150)
@@ -187,6 +195,7 @@ export class CreatePostComponent implements OnInit, OnChanges {
       category:this.category,
       subCategory:this.subCategory,
       tags:this.tags,
+      postImageURL:this.postImageURL,
       summary:this.summary,
       content: this.content
     });
@@ -195,6 +204,18 @@ export class CreatePostComponent implements OnInit, OnChanges {
     this.postData.content = this.postForm.get("content").value;
     this.postData.summary = this.postForm.get("summary").value;
     this.selectedCategory = this.postForm.get("category").value; 
+  }
+
+  uploadImage(event:any){
+    debugger
+    const blobImage = event.target.files[0];;
+    const formData = new FormData();
+    formData.append("file", blobImage, blobImage.name)
+    this.awsService.uploadToS3(formData).subscribe((response:APIResponse<String>)=>{
+        this.postImageURL.patchValue(response.data)
+    },(error)=>{
+      console.error("Error")
+    })
   }
 
   getCategoryList(){
@@ -208,7 +229,11 @@ export class CreatePostComponent implements OnInit, OnChanges {
 
   publishNewPost(){
     this.postService.saveNewPost(this.postForm.value).subscribe((response:APIResponse<Post>)=>{
-        this.postForm.reset();
+        if(response.status==201){
+          this.postForm.reset();  
+          this.toastrService.success(response.message)
+          this.router.navigateByUrl("/post/title/"+response.data.slugTitle+"/view");
+        }
     },(error)=>{
       console.log("Error while saving the post!")
     }) 

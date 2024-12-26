@@ -1,19 +1,13 @@
 export const environment = {
 
-    production: false,
+    production: true,
 
-    // oauthIssuerEndpoint: "http://localhost:9090" ,
-    
+    oauthIssuerEndpoint: "http://auth-server-env.eba-5eajkmd4.ap-south-1.elasticbeanstalk.com" ,
+
     oidcProd:true,
-  
 
-    // blogResourceEndpoint: "http://localhost:5000",
+    blogResourceEndpoint: "http://blog-service-env.eba-rfv5ypmm.ap-south-1.elasticbeanstalk.com",
 
-
-    oauthIssuerEndpoint: "https://idpserver.bugflu.com" ,
-
-    blogResourceEndpoint: "https://blog-service.bugflu.com",
-    
     apiVersion_1:"/api/v1",
 
     ngMultiSelectDropdownSetting:
@@ -35,9 +29,9 @@ export const environment = {
         textField: 'item_text',
         selectAllText: 'Select All',
         unSelectAllText: 'UnSelect All',
-        itemsShowLimit: 10,
+        itemsShowLimit: 3,
         allowSearchFilter: true,
-        limitSelection: 10,
+        limitSelection: 3,
         enableCheckAll: true,
         clearSearchFilter: true,
         maxHeight: 197,
@@ -51,8 +45,8 @@ export const environment = {
       },
 
     tinymceInit:{
-        baseUrl:'/tinymce',
-        suffix: '.min',
+    baseUrl:'/tinymce',
+  suffix: '.min',
         height: 500,
         // apiKey:'jug949l49wduq4fl7p7qzvwktc5d9nv442tysgqqrc1jh0sb',
         // license_key:'jug949l49wduq4fl7p7qzvwktc5d9nv442tysgqqrc1jh0sb',
@@ -66,7 +60,6 @@ export const environment = {
         menubar: 'file edit view insert format tools table help',
         content_css:["dark",
         ],
-        image_upload_handler:'',
         fullscreen_native: true,
         // toolbar_sticky: true,
         paste_data_images: true,

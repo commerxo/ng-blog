@@ -6,8 +6,12 @@ import { AuthService } from "./auth.service";
 import { OAuthModuleConfig, OAuthResourceServerErrorHandler, OAuthStorage } from "angular-oauth2-oidc";
 
 
-@Injectable()
-export class DefaultOAuthInterceptor implements HttpInterceptor {
+@Injectable(
+    {
+        providedIn:'root'
+    }
+)
+export class OAuthInterceptor implements HttpInterceptor {
     
     constructor(
         private authStorage: OAuthStorage,
@@ -39,13 +43,19 @@ export class DefaultOAuthInterceptor implements HttpInterceptor {
         
         if (sendAccessToken) {
 
+        
             let token = this.authStorage.getItem('access_token');
+            if(token == null){
+              return next.handle(req);
+            }
+            else{
             let header = 'Bearer ' + token;
 
             let headers = req.headers
                                 .set('Authorization', header);
 
             req = req.clone({ headers });
+            }
         }
         
 

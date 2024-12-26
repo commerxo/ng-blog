@@ -22,7 +22,9 @@ export class CoreModule {
 
   constructor(private oauthService:OAuthService){
 
-    this.oauthService.loadDiscoveryDocument();
+    // this.oauthService.loadDiscoveryDocument().then(_=>
+    //   this.oauthService.setupAutomaticSilentRefresh()
+    // );
   }
   static forRoot(): ModuleWithProviders<CoreModule>{
 
@@ -30,7 +32,6 @@ export class CoreModule {
       ngModule: CoreModule,
       providers:[
         {provide: APP_INITIALIZER, useFactory:authAppInitializerFactory, deps:[AuthService], multi:true},
-        // {provide: HTTP_INTERCEPTORS, useClass: DefaultOAuthInterceptor,deps:[AuthService], multi:true},
         {provide: AuthConfig, useValue: authConfig},
         {provide: OAuthModuleConfig, useValue: authModuleConfig}
       ]

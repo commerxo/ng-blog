@@ -7,6 +7,7 @@ import { environment } from "src/environments/environment.development";
 import { Post } from "../models/post";
 import { Tag } from "../models/tag";
 import { DatabaseHelper } from "../models/database-helper";
+import { PostParam } from "../models/post-param";
 
 
 @Injectable({
@@ -30,6 +31,17 @@ export class PostService{
       
       return this._httpClient.get<APIResponse<Post>>(environment.blogResourceEndpoint+environment.apiVersion_1+"/post/"+title+"/title",{params})
       .pipe(catchError(this.handleError));
+    }
+
+    getAllPostByTagName(tagName:string,databaseHelper:DatabaseHelper):Observable<APIResponse<Post[]>>{
+      const params = new HttpParams()
+      .set("search",databaseHelper.search)
+      .set("sortBy",databaseHelper.sortBy)
+      .set("sortOrder",databaseHelper.sortOrder)
+      .set("currentPage",databaseHelper.currentPage)
+      .set("itemsPerPage",databaseHelper.itemPerPage)
+      return this._httpClient.get<APIResponse<Post[]>>(environment.blogResourceEndpoint+environment.apiVersion_1+"/post/tag/"+tagName,{params})
+      .pipe(catchError(this.handleError))
     }
 
 

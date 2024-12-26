@@ -26,12 +26,12 @@ export class ViewPostComponent implements OnInit, OnDestroy{
     }
 
   ngOnInit(): void {
-    debugger
       this.routeSub = this.activeRouting.params.subscribe(param => {
         if(param['title']){
           this.getPublishedPostBySlug(param['title'])
         }
       })
+      
   }
 
   getPublishedPostBySlug(title:string){
